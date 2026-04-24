@@ -1,0 +1,48 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  extensions = [postgis]
+}
+
+model Complaint {
+  id          String    @id @default(cuid())
+  userId      String
+  imageUrl    String
+  category    String
+  severity    String
+  description String
+  aiDraft     String?
+  status      String    @default("pending")
+  coords      Unsupported("geometry(Point, 4326)")?
+  latitude    Float
+  longitude   Float
+  city        String
+  authorityId String?
+  authority   Authority? @relation(fields: [authorityId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([coords], name: "complaint_coords_idx", type: Gist)
+  @@index([status])
+  @@index([category])
+  @@index([city])
+}
+
+model Authority {
+  id           String      @id @default(cuid())
+  name         String
+  email        String
+  phone        String?
+  city         String
+  state        String
+  department   String?
+  jurisdiction Unsupported("geometry(Polygon, 4326)")?
+  complaints   Complaint[]
+
+  @@index([city])
+  @@index([jurisdiction], name: "authority_jurisdiction_idx", type: Gist)
+}
