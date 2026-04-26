@@ -1,29 +1,71 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Phone, ArrowRight, Loader2, CheckCircle2 } from 'lucide-react';
+import { Shield, Phone, ArrowRight, Loader2, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { auth } from '@/lib/firebase';
+import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+
+declare global {
+  interface Window {
+    recaptchaVerifier: RecaptchaVerifier;
+    grecaptcha: any;
+  }
+}
 
 export default function LoginPage() {
   const [step, setStep] = useState<'phone'|'otp'|'success'>('phone');
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState(['','','','','','']);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
+
+  useEffect(() => {
+    // Initialize RecaptchaVerifier
+    if (typeof window !== 'undefined' && !window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+        size: 'normal',
+      });
+    }
+  }, []);
 
   const handleSendOTP = async () => {
     if (phone.length < 10) return;
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
+    setError(null);
+    try {
+      const phoneNumber = `+91${phone}`;
+      const appVerifier = window.recaptchaVerifier;
+      const confirmation = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
+      setConfirmationResult(confirmation);
+      setStep('otp');
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || 'Failed to send OTP. Please try again.');
+      // Reset recaptcha if it fails
+      if (window.recaptchaVerifier) {
+        window.recaptchaVerifier.render().then((widgetId) => {
+          window.grecaptcha.reset(widgetId);
+        });
+      }
+    }
     setLoading(false);
-    setStep('otp');
   };
 
   const handleVerifyOTP = async () => {
-    if (otp.some((d) => !d)) return;
+    if (otp.some((d) => !d) || !confirmationResult) return;
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
+    setError(null);
+    try {
+      const otpCode = otp.join('');
+      await confirmationResult.confirm(otpCode);
+      setStep('success');
+    } catch (err: any) {
+      console.error(err);
+      setError('Invalid OTP code. Please try again.');
+    }
     setLoading(false);
-    setStep('success');
   };
 
   const handleOtpChange = (index: number, value: string) => {
@@ -44,6 +86,17 @@ export default function LoginPage() {
 
   return (
     <div style={{ maxWidth:'420px', margin:'0 auto', padding:'60px 20px 40px', minHeight:'calc(100vh - 136px)', display:'flex', flexDirection:'column', justifyContent:'center' }}>
+      
+      {/* Permanent container for visible reCAPTCHA to prevent DOM removal errors */}
+      <div 
+        id="recaptcha-container" 
+        style={{ 
+          display: step === 'phone' ? 'flex' : 'none', 
+          justifyContent: 'center',
+          marginBottom: '20px'
+        }}
+      ></div>
+
       <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} style={{textAlign:'center',marginBottom:'40px'}}>
         <div style={{ width:'64px',height:'64px',borderRadius:'18px',background:'var(--accent-gradient)',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 16px',boxShadow:'0 8px 30px rgba(99,102,241,0.3)' }}>
           <Shield size={32} color="white" />
@@ -54,6 +107,13 @@ export default function LoginPage() {
         <p style={{color:'var(--text-secondary)',fontSize:'0.9rem'}}>Sign in to track your reported issues</p>
       </motion.div>
 
+      {error && (
+        <div className="glass-card" style={{ padding: '12px', border: '1px solid var(--status-danger)', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <AlertTriangle size={18} style={{ color: 'var(--status-danger)' }} />
+          <p style={{ color: 'var(--status-danger)', fontSize: '0.85rem' }}>{error}</p>
+        </div>
+      )}
+
       {step === 'phone' && (
         <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:0.2}}>
           <div className="glass-card" style={{padding:'28px 24px'}}>
@@ -62,6 +122,7 @@ export default function LoginPage() {
               <div className="input-field" style={{width:'72px',textAlign:'center',flexShrink:0,display:'flex',alignItems:'center',justifyContent:'center',color:'var(--text-secondary)'}}>🇮🇳 +91</div>
               <input type="tel" className="input-field" placeholder="Enter mobile number" value={phone} onChange={(e) => setPhone(e.target.value.replace(/\D/g,'').slice(0,10))} id="phone-input" style={{flex:1}} />
             </div>
+            
             <button className="btn-primary" onClick={handleSendOTP} disabled={phone.length<10||loading} id="btn-send-otp" style={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center',gap:'8px',opacity:phone.length<10?0.5:1}}>
               {loading ? <Loader2 size={20} style={{animation:'spin 1s linear infinite'}} /> : <><Phone size={18}/>Send OTP<ArrowRight size={18}/></>}
             </button>
@@ -85,7 +146,7 @@ export default function LoginPage() {
             <button className="btn-primary" onClick={handleVerifyOTP} disabled={otp.some((d) => !d)||loading} id="btn-verify-otp" style={{width:'100%',display:'flex',alignItems:'center',justifyContent:'center',gap:'8px',opacity:otp.some((d)=>!d)?0.5:1}}>
               {loading ? <Loader2 size={20} style={{animation:'spin 1s linear infinite'}} /> : <>Verify & Sign In<ArrowRight size={18}/></>}
             </button>
-            <button onClick={() => setStep('phone')} style={{width:'100%',background:'none',border:'none',color:'var(--accent-start)',fontSize:'0.85rem',cursor:'pointer',marginTop:'16px',padding:'8px'}}>Change phone number</button>
+            <button onClick={() => { setStep('phone'); setError(null); setOtp(['','','','','','']); }} style={{width:'100%',background:'none',border:'none',color:'var(--accent-start)',fontSize:'0.85rem',cursor:'pointer',marginTop:'16px',padding:'8px'}}>Change phone number</button>
           </div>
         </motion.div>
       )}

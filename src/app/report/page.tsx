@@ -381,7 +381,7 @@ function ReviewStep({
   onEdit,
 }: {
   result: AnalysisResult;
-  onSend: () => void;
+  onSend: (mailtoLink?: string) => void;
   onEdit: (draft: string) => void;
 }) {
   const [draft, setDraft] = useState(result.suggestedDraft);
@@ -461,21 +461,19 @@ function ReviewStep({
       {/* Send Actions */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
         {result.authority ? (
-          <a href={mailtoLink} onClick={onSend} style={{ textDecoration: 'none' }}>
-            <button className="btn-primary" id="btn-send-email" style={{
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '10px',
-              fontSize: '1rem',
-              padding: '16px',
-            }}>
-              <Mail size={20} />
-              Send to {result.authority.name}
-              <Send size={18} />
-            </button>
-          </a>
+          <button className="btn-primary" id="btn-send-email" onClick={() => onSend(mailtoLink)} style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '10px',
+            fontSize: '1rem',
+            padding: '16px',
+          }}>
+            <Mail size={20} />
+            Send to {result.authority.name}
+            <Send size={18} />
+          </button>
         ) : (
           <FallbackSection />
         )}
@@ -562,7 +560,21 @@ function FallbackSection() {
   );
 }
 
-function SuccessStep() {
+function SuccessStep({
+  result,
+  draft,
+}: {
+  result: AnalysisResult | null;
+  draft: string;
+}) {
+  const mailtoLink = result?.authority
+    ? generateMailtoLink(
+        result.authority.email,
+        `Civic Complaint: ${categoryLabel(result.category)} — Immediate Attention Required`,
+        draft || result?.suggestedDraft || ''
+      )
+    : '';
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -600,12 +612,32 @@ function SuccessStep() {
         color: 'var(--text-secondary)',
         fontSize: '0.95rem',
         maxWidth: '400px',
-        margin: '0 auto 32px',
+        margin: '0 auto 24px',
         lineHeight: 1.6,
       }}>
         Your complaint has been drafted and the email client was opened. 
         Make sure to hit send in your email app!
       </p>
+
+      {/* Manual Action Buttons */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '300px', margin: '0 auto 32px' }}>
+        {mailtoLink && (
+          <a href={mailtoLink} style={{ textDecoration: 'none' }}>
+            <button className="btn-ghost" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              <Mail size={18} />
+              Open Email App Manually
+            </button>
+          </a>
+        )}
+        {result?.authority?.phone && (
+          <a href={`tel:${result.authority.phone}`} style={{ textDecoration: 'none' }}>
+            <button className="btn-ghost" style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              <Phone size={18} />
+              Call Authority ({result.authority.phone})
+            </button>
+          </a>
+        )}
+      </div>
 
       <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
         <a href="/report">
@@ -638,8 +670,9 @@ export default function ReportPage() {
   const [step, setStep] = useState(0);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
+  const [finalDraft, setFinalDraft] = useState('');
   const { coordinates } = useGeolocation();
-  const { analyze, loading: analyzing } = useAnalysis();
+  const { analyze, loading: analyzing, error } = useAnalysis();
 
   const handleCapture = useCallback(async (image: string) => {
     setCapturedImage(image);
@@ -656,8 +689,14 @@ export default function ReportPage() {
     }
   }, [coordinates, analyze]);
 
-  const handleSend = () => {
-    setStep(4);
+  const handleSend = (mailtoLink?: string) => {
+    if (mailtoLink) {
+      window.location.href = mailtoLink;
+    }
+    // Add a short delay before changing state to ensure the mailto protocol has time to trigger the OS dialog
+    setTimeout(() => {
+      setStep(4);
+    }, 500);
   };
 
   const stepTitles = ['Capture', 'Analyzing', 'Results', 'Review', 'Done'];
@@ -683,45 +722,69 @@ export default function ReportPage() {
           {step === 1 && (
             <div style={{ textAlign: 'center' }}>
               <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>
-                🤖 Analyzing...
+                {error ? '❌ Analysis Failed' : '🤖 Analyzing...'}
               </h2>
               <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', fontSize: '0.9rem' }}>
-                Our AI is inspecting your image
+                {error ? 'Something went wrong' : 'Our AI is inspecting your image'}
               </p>
 
-              {/* Preview */}
-              {capturedImage && (
-                <div style={{
-                  borderRadius: 'var(--radius-lg)',
-                  overflow: 'hidden',
-                  marginBottom: '24px',
-                  position: 'relative',
-                }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={capturedImage}
-                    alt="Analyzing"
-                    style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', opacity: 0.7 }}
-                  />
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'rgba(0,0,0,0.4)',
-                  }}>
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+              {/* Error Message */}
+              {error ? (
+                <div className="glass-card" style={{ padding: '24px', border: '1px solid var(--status-danger)' }}>
+                  <AlertTriangle size={32} style={{ color: 'var(--status-danger)', margin: '0 auto 16px' }} />
+                  <p style={{ color: 'var(--status-danger)', fontSize: '0.95rem', marginBottom: '24px', lineHeight: 1.5 }}>
+                    {error}
+                  </p>
+                  <div style={{ display: 'flex', gap: '12px' }}>
+                    <button
+                      className="btn-ghost"
+                      onClick={() => {
+                        setStep(0);
+                        setCapturedImage(null);
+                      }}
+                      style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
                     >
-                      <Loader2 size={48} style={{ color: 'var(--accent-start)' }} />
-                    </motion.div>
+                      <RotateCcw size={18} />
+                      Try Again
+                    </button>
                   </div>
                 </div>
+              ) : (
+                <>
+                  {/* Preview */}
+                  {capturedImage && (
+                    <div style={{
+                      borderRadius: 'var(--radius-lg)',
+                      overflow: 'hidden',
+                      marginBottom: '24px',
+                      position: 'relative',
+                    }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={capturedImage}
+                        alt="Analyzing"
+                        style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', opacity: 0.7 }}
+                      />
+                      <div style={{
+                        position: 'absolute',
+                        inset: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'rgba(0,0,0,0.4)',
+                      }}>
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                        >
+                          <Loader2 size={48} style={{ color: 'var(--accent-start)' }} />
+                        </motion.div>
+                      </div>
+                    </div>
+                  )}
+                  {analyzing && <AnalysisShimmer />}
+                </>
               )}
-
-              {analyzing && <AnalysisShimmer />}
             </div>
           )}
 
@@ -733,11 +796,11 @@ export default function ReportPage() {
             <ReviewStep
               result={analysisResult}
               onSend={handleSend}
-              onEdit={() => {}}
+              onEdit={setFinalDraft}
             />
           )}
 
-          {step === 4 && <SuccessStep />}
+          {step === 4 && <SuccessStep result={analysisResult} draft={finalDraft} />}
         </motion.div>
       </AnimatePresence>
     </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -11,19 +11,22 @@ import {
   Clock,
   CheckCircle2,
   MapPin,
+  Loader2,
 } from 'lucide-react';
 import { categoryLabel, categoryEmoji, formatDate, severityColor } from '@/lib/utils';
 import type { ComplaintStatus, SeverityLevel } from '@/types';
 
-// --- Sample Data ---
-const SAMPLE_COMPLAINTS = [
-  { id: '1', category: 'pothole', severity: 'high' as SeverityLevel, description: 'Large pothole on main road near Mahakal Temple causing traffic issues.', status: 'pending' as ComplaintStatus, latitude: 23.1828, longitude: 75.7682, city: 'Ujjain', createdAt: '2026-04-20T10:30:00Z' },
-  { id: '2', category: 'garbage_dump', severity: 'critical' as SeverityLevel, description: 'Overflowing garbage dump near residential area. Health hazard.', status: 'sent' as ComplaintStatus, latitude: 23.1765, longitude: 75.7885, city: 'Ujjain', createdAt: '2026-04-19T15:20:00Z' },
-  { id: '3', category: 'broken_streetlight', severity: 'medium' as SeverityLevel, description: 'Three consecutive streetlights not working on Dewas Road.', status: 'resolved' as ComplaintStatus, latitude: 23.1690, longitude: 75.7750, city: 'Ujjain', createdAt: '2026-04-18T08:45:00Z' },
-  { id: '4', category: 'water_leak', severity: 'high' as SeverityLevel, description: 'Water pipeline burst causing waterlogging on Indore Road.', status: 'pending' as ComplaintStatus, latitude: 23.1900, longitude: 75.8000, city: 'Ujjain', createdAt: '2026-04-21T14:00:00Z' },
-  { id: '5', category: 'damaged_road', severity: 'critical' as SeverityLevel, description: 'Severely damaged road surface after monsoon near Bus Stand.', status: 'sent' as ComplaintStatus, latitude: 23.1750, longitude: 75.7600, city: 'Ujjain', createdAt: '2026-04-22T09:15:00Z' },
-  { id: '6', category: 'sewage_overflow', severity: 'critical' as SeverityLevel, description: 'Sewage overflow in residential colony causing health concerns.', status: 'pending' as ComplaintStatus, latitude: 23.1650, longitude: 75.7900, city: 'Ujjain', createdAt: '2026-04-23T11:30:00Z' },
-];
+type ComplaintData = {
+  id: string;
+  category: string;
+  severity: SeverityLevel;
+  description: string;
+  status: ComplaintStatus;
+  latitude: number;
+  longitude: number;
+  city: string;
+  createdAt: string;
+};
 
 const statusConfig: Record<ComplaintStatus, { color: string; icon: typeof Clock; label: string }> = {
   pending: { color: 'var(--status-warning)', icon: Clock, label: 'Pending' },
@@ -32,7 +35,7 @@ const statusConfig: Record<ComplaintStatus, { color: string; icon: typeof Clock;
 };
 
 // --- Map Marker ---
-function IssueMarker({ complaint }: { complaint: typeof SAMPLE_COMPLAINTS[0] }) {
+function IssueMarker({ complaint }: { complaint: ComplaintData }) {
   const color = severityColor(complaint.severity);
   return (
     <div style={{
@@ -60,7 +63,7 @@ function IssueMarker({ complaint }: { complaint: typeof SAMPLE_COMPLAINTS[0] }) 
 }
 
 // --- Complaint Card ---
-function ComplaintCard({ complaint }: { complaint: typeof SAMPLE_COMPLAINTS[0] }) {
+function ComplaintCard({ complaint }: { complaint: ComplaintData }) {
   const status = statusConfig[complaint.status];
   const StatusIcon = status.icon;
 
@@ -110,16 +113,44 @@ function ComplaintCard({ complaint }: { complaint: typeof SAMPLE_COMPLAINTS[0] }
 export default function DashboardPage() {
   const [panelOpen, setPanelOpen] = useState(true);
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [complaints, setComplaints] = useState<ComplaintData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchComplaints() {
+      try {
+        const response = await fetch('/api/complaints?limit=100');
+        if (!response.ok) {
+          throw new Error('Failed to fetch complaints');
+        }
+        const result = await response.json();
+        if (result.success) {
+          setComplaints(result.data);
+        } else {
+          throw new Error(result.error || 'Failed to fetch complaints');
+        }
+      } catch (err: any) {
+        console.error('Error fetching complaints:', err);
+        setError(err.message);
+        setComplaints([]); // Fallback to empty
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchComplaints();
+  }, []);
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
   const hasApiKey = apiKey && apiKey !== 'your_google_maps_api_key_here';
 
   const filteredComplaints = useMemo(() => {
-    return SAMPLE_COMPLAINTS.filter((c) => {
+    return complaints.filter((c) => {
       if (filterStatus !== 'all' && c.status !== filterStatus) return false;
       return true;
     });
-  }, [filterStatus]);
+  }, [filterStatus, complaints]);
 
   return (
     <div style={{ height: 'calc(100vh - 136px)', position: 'relative', overflow: 'hidden' }}>
@@ -130,7 +161,7 @@ export default function DashboardPage() {
             <Map
               defaultZoom={13}
               defaultCenter={{ lat: 23.1765, lng: 75.7885 }}
-              mapId="cityzenai-dark"
+              mapId="DEMO_MAP_ID"
               gestureHandling="greedy"
               disableDefaultUI={false}
               colorScheme="DARK"
@@ -157,7 +188,7 @@ export default function DashboardPage() {
               </defs>
               <rect width="100%" height="100%" fill="url(#grid)" />
             </svg>
-            {SAMPLE_COMPLAINTS.map((c, i) => {
+            {complaints.map((c, i) => {
               const color = severityColor(c.severity);
               const x = 20 + (i * 15) % 70;
               const y = 15 + (i * 20) % 60;
@@ -239,14 +270,25 @@ export default function DashboardPage() {
                 <ComplaintCard key={complaint.id} complaint={complaint} />
               ))}
             </AnimatePresence>
-            {filteredComplaints.length === 0 && (
+            {loading ? (
+              <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--text-muted)', fontSize: '0.9rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+                <Loader2 size={24} style={{ animation: 'spin 1s linear infinite' }} />
+                Loading complaints...
+              </div>
+            ) : error ? (
+              <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--status-danger)', fontSize: '0.9rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+                <AlertTriangle size={24} />
+                Database unavailable. Please ensure your database is running.
+              </div>
+            ) : filteredComplaints.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
                 No complaints match your filters
               </div>
-            )}
+            ) : null}
           </div>
         )}
       </motion.div>
+      <style jsx global>{`@keyframes spin { from {transform:rotate(0deg)} to {transform:rotate(360deg)} }`}</style>
     </div>
   );
 }

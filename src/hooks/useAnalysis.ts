@@ -32,7 +32,8 @@ export function useAnalysis() {
         });
 
         if (!response.ok) {
-          throw new Error(`Analysis failed (${response.status})`);
+          const errData = await response.json().catch(() => null);
+          throw new Error(errData?.error || `Analysis failed (${response.status})`);
         }
 
         const data: AnalyzeResponse = await response.json();
