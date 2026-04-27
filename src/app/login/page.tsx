@@ -158,7 +158,10 @@ export default function LoginPage() {
           </motion.div>
           <h2 style={{fontSize:'1.4rem',fontWeight:700,marginBottom:'8px'}}>Welcome, <span className="gradient-text">Citizen!</span></h2>
           <p style={{color:'var(--text-secondary)',marginBottom:'24px',fontSize:'0.9rem'}}>You are now signed in.</p>
-          <a href="/report"><button className="btn-primary" style={{display:'inline-flex',alignItems:'center',gap:'8px'}}>Report an Issue<ArrowRight size={18}/></button></a>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
+            <a href="/profile"><button className="btn-primary" style={{display:'inline-flex',alignItems:'center',gap:'8px'}}>Complete Profile<ArrowRight size={18}/></button></a>
+            <a href="/report" style={{color:'var(--text-muted)', fontSize:'0.85rem', textDecoration:'underline'}}>Skip for now</a>
+          </div>
         </motion.div>
       )}
 

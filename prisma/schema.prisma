@@ -8,9 +8,21 @@ datasource db {
   extensions = [postgis]
 }
 
+model User {
+  id         String      @id // Firebase UID
+  name       String?
+  email      String?
+  phone      String?
+  address    String?
+  complaints Complaint[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
 model Complaint {
   id          String    @id @default(cuid())
   userId      String
+  user        User      @relation(fields: [userId], references: [id])
   imageUrl    String
   category    String
   severity    String

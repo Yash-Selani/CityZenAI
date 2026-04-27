@@ -22,6 +22,7 @@ import { useGeolocation } from '@/hooks/useGeolocation';
 import { useAnalysis } from '@/hooks/useAnalysis';
 import { categoryLabel, categoryEmoji, generateMailtoLink } from '@/lib/utils';
 import type { AnalysisResult, FallbackContact } from '@/types';
+import { auth } from '@/lib/firebase';
 
 // --- Step Indicator ---
 function StepIndicator({ currentStep, totalSteps }: { currentStep: number; totalSteps: number }) {
@@ -385,6 +386,32 @@ function ReviewStep({
   onEdit: (draft: string) => void;
 }) {
   const [draft, setDraft] = useState(result.suggestedDraft);
+
+  useEffect(() => {
+    async function appendProfile() {
+      const user = auth.currentUser;
+      if (user) {
+        try {
+          const res = await fetch(`/api/user?userId=${user.uid}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.data) {
+              const profile = data.data;
+              if (profile.name || profile.phone) {
+                const signature = `\n\nSincerely,\n${profile.name || 'Citizen'}\n${profile.phone || ''}\n${profile.address || ''}`.trim();
+                if (!draft.includes('Sincerely,')) {
+                  setDraft(prev => prev + '\n' + signature);
+                }
+              }
+            }
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+    appendProfile();
+  }, []);
 
   useEffect(() => {
     onEdit(draft);
