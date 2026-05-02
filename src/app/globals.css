@@ -75,6 +75,14 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
+  padding-top: 64px; /* Space for Header */
+  padding-bottom: 80px; /* Space for BottomNav on mobile */
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0; /* Remove BottomNav space on desktop */
+  }
 }
 
 /* --- Scrollbar Styling --- */

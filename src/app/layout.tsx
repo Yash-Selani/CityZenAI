@@ -38,7 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body style={{ paddingTop: '64px', paddingBottom: '72px' }}>
+      <body>
         <div className="gradient-mesh" aria-hidden="true" />
         <AuthGuard>
           <Header />

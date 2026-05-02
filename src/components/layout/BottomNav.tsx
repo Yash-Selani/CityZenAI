@@ -30,7 +30,7 @@ export default function BottomNav() {
   ];
 
   return (
-    <nav className="bottom-nav" id="bottom-navigation">
+    <nav className="bottom-nav md:hidden" id="bottom-navigation">
       <div style={{
         display: 'flex',
         justifyContent: 'space-around',
