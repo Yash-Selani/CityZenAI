@@ -1,0 +1,1590 @@
+{
+  "nodes": [
+    {
+      "id": "eslint_config_mjs",
+      "label": "eslint.config.mjs",
+      "file_type": "code",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "next_env_d_ts",
+      "label": "next-env.d.ts",
+      "file_type": "code",
+      "source_file": "next-env.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "next_config_ts",
+      "label": "next.config.ts",
+      "file_type": "code",
+      "source_file": "next.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "postcss_config_mjs",
+      "label": "postcss.config.mjs",
+      "file_type": "code",
+      "source_file": "postcss.config.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "prisma_config_ts",
+      "label": "prisma.config.ts",
+      "file_type": "code",
+      "source_file": "prisma.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "prisma_seed_ts",
+      "label": "seed.ts",
+      "file_type": "code",
+      "source_file": "prisma\\seed.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "prisma_seed_main",
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "prisma\\seed.ts",
+      "source_location": "L143"
+    },
+    {
+      "id": "src_app_layout_tsx",
+      "label": "layout.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\layout.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_page_tsx",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_page_animatedcounter",
+      "label": "AnimatedCounter()",
+      "file_type": "code",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L34"
+    },
+    {
+      "id": "src_app_template_tsx",
+      "label": "template.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\template.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_template_template",
+      "label": "Template()",
+      "file_type": "code",
+      "source_file": "src\\app\\template.tsx",
+      "source_location": "L6"
+    },
+    {
+      "id": "src_app_api_analyze_route_ts",
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\analyze\\route.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "analyze_route_post",
+      "label": "POST()",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\analyze\\route.ts",
+      "source_location": "L12"
+    },
+    {
+      "id": "src_app_api_authorities_route_ts",
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\authorities\\route.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "authorities_route_get",
+      "label": "GET()",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\authorities\\route.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "src_app_api_complaints_route_ts",
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\complaints\\route.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "complaints_route_get",
+      "label": "GET()",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\complaints\\route.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "complaints_route_post",
+      "label": "POST()",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\complaints\\route.ts",
+      "source_location": "L48"
+    },
+    {
+      "id": "src_app_api_user_route_ts",
+      "label": "route.ts",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\user\\route.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "user_route_get",
+      "label": "GET()",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\user\\route.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "user_route_post",
+      "label": "POST()",
+      "file_type": "code",
+      "source_file": "src\\app\\api\\user\\route.ts",
+      "source_location": "L39"
+    },
+    {
+      "id": "src_app_dashboard_page_tsx",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "dashboard_page_issuemarker",
+      "label": "IssueMarker()",
+      "file_type": "code",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L38"
+    },
+    {
+      "id": "dashboard_page_complaintcard",
+      "label": "ComplaintCard()",
+      "file_type": "code",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L66"
+    },
+    {
+      "id": "dashboard_page_fetchcomplaints",
+      "label": "fetchComplaints()",
+      "file_type": "code",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L121"
+    },
+    {
+      "id": "src_app_login_page_tsx",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "login_page_handlesendotp",
+      "label": "handleSendOTP()",
+      "file_type": "code",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L33"
+    },
+    {
+      "id": "login_page_handleverifyotp",
+      "label": "handleVerifyOTP()",
+      "file_type": "code",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L56"
+    },
+    {
+      "id": "login_page_handleotpchange",
+      "label": "handleOtpChange()",
+      "file_type": "code",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L71"
+    },
+    {
+      "id": "login_page_handleotpkeydown",
+      "label": "handleOtpKeyDown()",
+      "file_type": "code",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L81"
+    },
+    {
+      "id": "src_app_profile_page_tsx",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\profile\\page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "profile_page_handlechange",
+      "label": "handleChange()",
+      "file_type": "code",
+      "source_file": "src\\app\\profile\\page.tsx",
+      "source_location": "L57"
+    },
+    {
+      "id": "profile_page_handlesubmit",
+      "label": "handleSubmit()",
+      "file_type": "code",
+      "source_file": "src\\app\\profile\\page.tsx",
+      "source_location": "L63"
+    },
+    {
+      "id": "src_app_report_page_tsx",
+      "label": "page.tsx",
+      "file_type": "code",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "report_page_handlecapture",
+      "label": "handleCapture()",
+      "file_type": "code",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L94"
+    },
+    {
+      "id": "report_page_handlefileupload",
+      "label": "handleFileUpload()",
+      "file_type": "code",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L99"
+    },
+    {
+      "id": "report_page_appendprofile",
+      "label": "appendProfile()",
+      "file_type": "code",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L391"
+    },
+    {
+      "id": "report_page_handlesend",
+      "label": "handleSend()",
+      "file_type": "code",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L719"
+    },
+    {
+      "id": "src_components_layout_bottomnav_tsx",
+      "label": "BottomNav.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\layout\\BottomNav.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_components_layout_header_tsx",
+      "label": "Header.tsx",
+      "file_type": "code",
+      "source_file": "src\\components\\layout\\Header.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_hooks_useanalysis_ts",
+      "label": "useAnalysis.ts",
+      "file_type": "code",
+      "source_file": "src\\hooks\\useAnalysis.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "hooks_useanalysis_useanalysis",
+      "label": "useAnalysis()",
+      "file_type": "code",
+      "source_file": "src\\hooks\\useAnalysis.ts",
+      "source_location": "L12"
+    },
+    {
+      "id": "src_hooks_usecamera_ts",
+      "label": "useCamera.ts",
+      "file_type": "code",
+      "source_file": "src\\hooks\\useCamera.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "hooks_usecamera_usecamera",
+      "label": "useCamera()",
+      "file_type": "code",
+      "source_file": "src\\hooks\\useCamera.ts",
+      "source_location": "L12"
+    },
+    {
+      "id": "src_hooks_usegeolocation_ts",
+      "label": "useGeolocation.ts",
+      "file_type": "code",
+      "source_file": "src\\hooks\\useGeolocation.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "hooks_usegeolocation_usegeolocation",
+      "label": "useGeolocation()",
+      "file_type": "code",
+      "source_file": "src\\hooks\\useGeolocation.ts",
+      "source_location": "L12"
+    },
+    {
+      "id": "src_lib_authorities_ts",
+      "label": "authorities.ts",
+      "file_type": "code",
+      "source_file": "src\\lib\\authorities.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "lib_authorities_findauthority",
+      "label": "findAuthority()",
+      "file_type": "code",
+      "source_file": "src\\lib\\authorities.ts",
+      "source_location": "L9"
+    },
+    {
+      "id": "lib_authorities_reversegeocode",
+      "label": "reverseGeocode()",
+      "file_type": "code",
+      "source_file": "src\\lib\\authorities.ts",
+      "source_location": "L96"
+    },
+    {
+      "id": "lib_authorities_getfallbackcontacts",
+      "label": "getFallbackContacts()",
+      "file_type": "code",
+      "source_file": "src\\lib\\authorities.ts",
+      "source_location": "L126"
+    },
+    {
+      "id": "src_lib_db_ts",
+      "label": "db.ts",
+      "file_type": "code",
+      "source_file": "src\\lib\\db.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_firebase_ts",
+      "label": "firebase.ts",
+      "file_type": "code",
+      "source_file": "src\\lib\\firebase.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_lib_gemini_ts",
+      "label": "gemini.ts",
+      "file_type": "code",
+      "source_file": "src\\lib\\gemini.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "lib_gemini_analyzeimage",
+      "label": "analyzeImage()",
+      "file_type": "code",
+      "source_file": "src\\lib\\gemini.ts",
+      "source_location": "L25"
+    },
+    {
+      "id": "src_lib_utils_ts",
+      "label": "utils.ts",
+      "file_type": "code",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "lib_utils_cn",
+      "label": "cn()",
+      "file_type": "code",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "lib_utils_formatdate",
+      "label": "formatDate()",
+      "file_type": "code",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L7"
+    },
+    {
+      "id": "lib_utils_severitycolor",
+      "label": "severityColor()",
+      "file_type": "code",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L17"
+    },
+    {
+      "id": "lib_utils_categorylabel",
+      "label": "categoryLabel()",
+      "file_type": "code",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L27"
+    },
+    {
+      "id": "lib_utils_categoryemoji",
+      "label": "categoryEmoji()",
+      "file_type": "code",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L42"
+    },
+    {
+      "id": "lib_utils_generatemailtolink",
+      "label": "generateMailtoLink()",
+      "file_type": "code",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L57"
+    },
+    {
+      "id": "src_types_index_ts",
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src\\types\\index.ts",
+      "source_location": "L1"
+    }
+  ],
+  "edges": [
+    {
+      "source": "eslint_config_mjs",
+      "target": "config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "eslint_config_mjs",
+      "target": "core_web_vitals",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "eslint_config_mjs",
+      "target": "typescript",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "eslint.config.mjs",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "next_env_d_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_next_dev_types_routes_d_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "next-env.d.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "next_config_ts",
+      "target": "next",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "next.config.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "prisma_config_ts",
+      "target": "dotenv",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma.config.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "prisma_config_ts",
+      "target": "config",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma.config.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "prisma_seed_ts",
+      "target": "client",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma\\seed.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "prisma_seed_ts",
+      "target": "adapter_pg",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma\\seed.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "prisma_seed_ts",
+      "target": "pg",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma\\seed.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "prisma_seed_ts",
+      "target": "dotenv",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma\\seed.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "prisma_seed_ts",
+      "target": "path",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma\\seed.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "prisma_seed_ts",
+      "target": "prisma_seed_main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "prisma\\seed.ts",
+      "source_location": "L143",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_layout_tsx",
+      "target": "next",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\layout.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_layout_tsx",
+      "target": "google",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\layout.tsx",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_layout_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_app_globals_css",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\layout.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_layout_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_components_layout_header",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\layout.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_layout_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_components_layout_bottomnav",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\layout.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_page_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_page_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_page_tsx",
+      "target": "link",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_page_tsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_page_tsx",
+      "target": "app_page_animatedcounter",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\page.tsx",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_template_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\template.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_template_tsx",
+      "target": "navigation",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\template.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_template_tsx",
+      "target": "app_template_template",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\template.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_analyze_route_ts",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\analyze\\route.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_analyze_route_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_gemini",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\analyze\\route.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_analyze_route_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_authorities",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\analyze\\route.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_analyze_route_ts",
+      "target": "zod",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\analyze\\route.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_analyze_route_ts",
+      "target": "analyze_route_post",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\analyze\\route.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_authorities_route_ts",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\authorities\\route.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_authorities_route_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_authorities",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\authorities\\route.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_authorities_route_ts",
+      "target": "authorities_route_get",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\authorities\\route.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_complaints_route_ts",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\complaints\\route.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_complaints_route_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_db",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\complaints\\route.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_complaints_route_ts",
+      "target": "zod",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\complaints\\route.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_complaints_route_ts",
+      "target": "complaints_route_get",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\complaints\\route.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_complaints_route_ts",
+      "target": "complaints_route_post",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\complaints\\route.ts",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_user_route_ts",
+      "target": "server",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\user\\route.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_user_route_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_db",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\user\\route.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_user_route_ts",
+      "target": "zod",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\user\\route.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_user_route_ts",
+      "target": "user_route_get",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\user\\route.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_api_user_route_ts",
+      "target": "user_route_post",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\api\\user\\route.ts",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page_tsx",
+      "target": "react_google_maps",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page_tsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page_tsx",
+      "target": "dashboard_page_issuemarker",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page_tsx",
+      "target": "dashboard_page_complaintcard",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_dashboard_page_tsx",
+      "target": "dashboard_page_fetchcomplaints",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L121",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_login_page_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_login_page_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_login_page_tsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_login_page_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_firebase",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_login_page_tsx",
+      "target": "auth",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_login_page_tsx",
+      "target": "login_page_handlesendotp",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_login_page_tsx",
+      "target": "login_page_handleverifyotp",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L56",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_login_page_tsx",
+      "target": "login_page_handleotpchange",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_login_page_tsx",
+      "target": "login_page_handleotpkeydown",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\login\\page.tsx",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_profile_page_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\profile\\page.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_profile_page_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\profile\\page.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_profile_page_tsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\profile\\page.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_profile_page_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_firebase",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\profile\\page.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_profile_page_tsx",
+      "target": "navigation",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\profile\\page.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_profile_page_tsx",
+      "target": "profile_page_handlechange",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\profile\\page.tsx",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_profile_page_tsx",
+      "target": "profile_page_handlesubmit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\profile\\page.tsx",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_hooks_usecamera",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_hooks_usegeolocation",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_hooks_useanalysis",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_utils",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_firebase",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "report_page_handlecapture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "report_page_handlefileupload",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "report_page_appendprofile",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L391",
+      "weight": 1.0
+    },
+    {
+      "source": "src_app_report_page_tsx",
+      "target": "report_page_handlesend",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\app\\report\\page.tsx",
+      "source_location": "L719",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_layout_bottomnav_tsx",
+      "target": "link",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\layout\\BottomNav.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_layout_bottomnav_tsx",
+      "target": "navigation",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\layout\\BottomNav.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_layout_bottomnav_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\layout\\BottomNav.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_layout_bottomnav_tsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\layout\\BottomNav.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_layout_header_tsx",
+      "target": "link",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\layout\\Header.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_layout_header_tsx",
+      "target": "framer_motion",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\layout\\Header.tsx",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_layout_header_tsx",
+      "target": "lucide_react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\layout\\Header.tsx",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_layout_header_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\components\\layout\\Header.tsx",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "src_hooks_useanalysis_ts",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\hooks\\useAnalysis.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_hooks_useanalysis_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\hooks\\useAnalysis.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_hooks_useanalysis_ts",
+      "target": "hooks_useanalysis_useanalysis",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\hooks\\useAnalysis.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_hooks_usecamera_ts",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\hooks\\useCamera.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_hooks_usecamera_ts",
+      "target": "hooks_usecamera_usecamera",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\hooks\\useCamera.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_hooks_usegeolocation_ts",
+      "target": "react",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\hooks\\useGeolocation.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_hooks_usegeolocation_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\hooks\\useGeolocation.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_hooks_usegeolocation_ts",
+      "target": "hooks_usegeolocation_usegeolocation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\hooks\\useGeolocation.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_authorities_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_lib_db",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\authorities.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_authorities_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\authorities.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_authorities_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\authorities.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_authorities_ts",
+      "target": "lib_authorities_findauthority",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\authorities.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_authorities_ts",
+      "target": "lib_authorities_reversegeocode",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\authorities.ts",
+      "source_location": "L96",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_authorities_ts",
+      "target": "lib_authorities_getfallbackcontacts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\authorities.ts",
+      "source_location": "L126",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_db_ts",
+      "target": "client",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\db.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_db_ts",
+      "target": "adapter_pg",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\db.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_db_ts",
+      "target": "pg",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\db.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_firebase_ts",
+      "target": "app",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\firebase.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_firebase_ts",
+      "target": "auth",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\firebase.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_gemini_ts",
+      "target": "generative_ai",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\gemini.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_gemini_ts",
+      "target": "c_users_yash2_onedrive_desktop_projects_cityzenai_src_types",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\gemini.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_gemini_ts",
+      "target": "lib_gemini_analyzeimage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\gemini.ts",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_utils_ts",
+      "target": "clsx",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_utils_ts",
+      "target": "lib_utils_cn",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_utils_ts",
+      "target": "lib_utils_formatdate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_utils_ts",
+      "target": "lib_utils_severitycolor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_utils_ts",
+      "target": "lib_utils_categorylabel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_utils_ts",
+      "target": "lib_utils_categoryemoji",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "src_lib_utils_ts",
+      "target": "lib_utils_generatemailtolink",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\lib\\utils.ts",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "analyze_route_post",
+      "target": "lib_gemini_analyzeimage",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\app\\api\\analyze\\route.ts",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "analyze_route_post",
+      "target": "lib_authorities_reversegeocode",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\app\\api\\analyze\\route.ts",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "analyze_route_post",
+      "target": "lib_authorities_findauthority",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\app\\api\\analyze\\route.ts",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "authorities_route_get",
+      "target": "lib_authorities_reversegeocode",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\app\\api\\authorities\\route.ts",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "authorities_route_get",
+      "target": "lib_authorities_findauthority",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\app\\api\\authorities\\route.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "authorities_route_get",
+      "target": "lib_authorities_getfallbackcontacts",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\app\\api\\authorities\\route.ts",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "dashboard_page_issuemarker",
+      "target": "lib_utils_severitycolor",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src\\app\\dashboard\\page.tsx",
+      "source_location": "L39",
+      "weight": 1.0
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

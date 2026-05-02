@@ -4,16 +4,30 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Home, Camera, Map, User } from 'lucide-react';
-
-const navItems = [
-  { href: '/', icon: Home, label: 'Home' },
-  { href: '/report', icon: Camera, label: 'Report' },
-  { href: '/dashboard', icon: Map, label: 'Map' },
-  { href: '/login', icon: User, label: 'Profile' },
-];
+import { useState, useEffect } from 'react';
+import { auth } from '@/lib/firebase';
+import type { User as FirebaseUser } from 'firebase/auth';
 
 export default function BottomNav() {
   const pathname = usePathname();
+  const [user, setUser] = useState<FirebaseUser | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((u) => {
+      setUser(u);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Profile link points to /profile if logged in, /login if not
+  const profileHref = user ? '/profile' : '/login';
+
+  const navItems = [
+    { href: '/', icon: Home, label: 'Home' },
+    { href: '/report', icon: Camera, label: 'Report' },
+    { href: '/dashboard', icon: Map, label: 'Map' },
+    { href: profileHref, icon: User, label: 'Profile' },
+  ];
 
   return (
     <nav className="bottom-nav" id="bottom-navigation">
@@ -32,7 +46,7 @@ export default function BottomNav() {
 
           return (
             <Link
-              key={item.href}
+              key={item.label}
               href={item.href}
               id={`nav-${item.label.toLowerCase()}`}
               style={{

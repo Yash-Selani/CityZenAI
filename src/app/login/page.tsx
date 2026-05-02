@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Shield, Phone, ArrowRight, Loader2, CheckCircle2, AlertTriangle } from 'lucide-react';
 import { auth } from '@/lib/firebase';
 import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 
 declare global {
   interface Window {
@@ -14,21 +15,35 @@ declare global {
 }
 
 export default function LoginPage() {
+  const router = useRouter();
   const [step, setStep] = useState<'phone'|'otp'|'success'>('phone');
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState(['','','','','','']);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+
+  // If already logged in, redirect to profile
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        router.push('/profile');
+      } else {
+        setCheckingAuth(false);
+      }
+    });
+    return () => unsubscribe();
+  }, [router]);
 
   useEffect(() => {
-    // Initialize RecaptchaVerifier
-    if (typeof window !== 'undefined' && !window.recaptchaVerifier) {
+    // Initialize RecaptchaVerifier only when not checking auth and on phone step
+    if (typeof window !== 'undefined' && !window.recaptchaVerifier && !checkingAuth) {
       window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         size: 'normal',
       });
     }
-  }, []);
+  }, [checkingAuth]);
 
   const handleSendOTP = async () => {
     if (phone.length < 10) return;
@@ -59,8 +74,30 @@ export default function LoginPage() {
     setError(null);
     try {
       const otpCode = otp.join('');
-      await confirmationResult.confirm(otpCode);
+      const userCredential = await confirmationResult.confirm(otpCode);
+      const user = userCredential.user;
+
+      // Create/update user record in database immediately after login
+      try {
+        await fetch('/api/user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id: user.uid,
+            phone: user.phoneNumber || `+91${phone}`,
+          }),
+        });
+      } catch (dbErr) {
+        // Don't block login if DB save fails - profile can be completed later
+        console.error('Failed to save user to database:', dbErr);
+      }
+
       setStep('success');
+
+      // Auto-redirect to profile page after a short delay
+      setTimeout(() => {
+        router.push('/profile');
+      }, 2000);
     } catch (err: any) {
       console.error(err);
       setError('Invalid OTP code. Please try again.');
@@ -83,6 +120,15 @@ export default function LoginPage() {
       document.getElementById(`otp-${index-1}`)?.focus();
     }
   };
+
+  // Show loading while checking auth state
+  if (checkingAuth) {
+    return (
+      <div style={{ height: 'calc(100vh - 136px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Loader2 size={32} style={{ animation: 'spin 1s linear infinite', color: 'var(--accent-start)' }} />
+      </div>
+    );
+  }
 
   return (
     <div style={{ maxWidth:'420px', margin:'0 auto', padding:'60px 20px 40px', minHeight:'calc(100vh - 136px)', display:'flex', flexDirection:'column', justifyContent:'center' }}>
@@ -157,7 +203,7 @@ export default function LoginPage() {
             <CheckCircle2 size={36} color="white" />
           </motion.div>
           <h2 style={{fontSize:'1.4rem',fontWeight:700,marginBottom:'8px'}}>Welcome, <span className="gradient-text">Citizen!</span></h2>
-          <p style={{color:'var(--text-secondary)',marginBottom:'24px',fontSize:'0.9rem'}}>You are now signed in.</p>
+          <p style={{color:'var(--text-secondary)',marginBottom:'24px',fontSize:'0.9rem'}}>You are now signed in. Redirecting to your profile...</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
             <a href="/profile"><button className="btn-primary" style={{display:'inline-flex',alignItems:'center',gap:'8px'}}>Complete Profile<ArrowRight size={18}/></button></a>
             <a href="/report" style={{color:'var(--text-muted)', fontSize:'0.85rem', textDecoration:'underline'}}>Skip for now</a>

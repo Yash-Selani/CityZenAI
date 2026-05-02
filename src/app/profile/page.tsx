@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { User, Phone, Mail, MapPin, Save, Loader2, CheckCircle2, ArrowRight } from 'lucide-react';
+import { User, Phone, Mail, MapPin, Save, Loader2, CheckCircle2, ArrowRight, LogOut } from 'lucide-react';
 import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 
@@ -11,6 +11,8 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isNewUser, setIsNewUser] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -36,12 +38,20 @@ export default function ProfilePage() {
         if (res.ok) {
           const data = await res.json();
           if (data.success && data.data) {
+            const profile = data.data;
+            // Check if profile is essentially empty (new user)
+            const hasProfileData = profile.name || profile.email || profile.address;
+            setIsNewUser(!hasProfileData);
+            
             setFormData(prev => ({
-              name: data.data.name || prev.name,
-              email: data.data.email || prev.email,
-              phone: data.data.phone || prev.phone,
-              address: data.data.address || prev.address,
+              name: profile.name || prev.name || '',
+              email: profile.email || prev.email || '',
+              phone: profile.phone || prev.phone || '',
+              address: profile.address || prev.address || '',
             }));
+          } else {
+            // User not found in DB yet — this is a new user
+            setIsNewUser(true);
           }
         }
       } catch (err) {
@@ -58,6 +68,7 @@ export default function ProfilePage() {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     setSuccess(false);
+    setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -66,6 +77,7 @@ export default function ProfilePage() {
     
     setSaving(true);
     setSuccess(false);
+    setError(null);
     
     try {
       const res = await fetch('/api/user', {
@@ -79,18 +91,32 @@ export default function ProfilePage() {
       
       if (res.ok) {
         setSuccess(true);
+        setIsNewUser(false);
         setTimeout(() => setSuccess(false), 3000);
+      } else {
+        const data = await res.json();
+        setError(data.error || 'Failed to save profile');
       }
     } catch (err) {
       console.error('Failed to save profile', err);
+      setError('Network error. Please try again.');
     } finally {
       setSaving(false);
     }
   };
 
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      router.push('/');
+    } catch (err) {
+      console.error('Sign out failed:', err);
+    }
+  };
+
   if (loading) {
     return (
-      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ height: 'calc(100vh - 136px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <Loader2 size={32} style={{ animation: 'spin 1s linear infinite', color: 'var(--accent-start)' }} />
       </div>
     );
@@ -104,12 +130,25 @@ export default function ProfilePage() {
             <User size={32} color="white" />
           </div>
           <h1 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '8px' }}>
-            Your <span className="gradient-text">Profile</span>
+            {isNewUser ? (
+              <>Complete Your <span className="gradient-text">Profile</span></>
+            ) : (
+              <>Your <span className="gradient-text">Profile</span></>
+            )}
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-            Save your details to automatically include them in your complaints.
+            {isNewUser
+              ? 'Fill in your details to get started with CityZenAI.'
+              : 'Your details are automatically included in your complaints.'
+            }
           </p>
         </div>
+
+        {error && (
+          <div className="glass-card" style={{ padding: '12px', border: '1px solid var(--status-danger)', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <p style={{ color: 'var(--status-danger)', fontSize: '0.85rem' }}>{error}</p>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="glass-card" style={{ padding: '24px' }}>
           <div style={{ marginBottom: '20px' }}>
@@ -143,9 +182,15 @@ export default function ProfilePage() {
                 onChange={handleChange}
                 placeholder="+91..."
                 className="input-field"
-                style={{ paddingLeft: '42px', width: '100%' }}
+                style={{ paddingLeft: '42px', width: '100%', background: formData.phone ? 'rgba(255,255,255,0.02)' : undefined }}
+                readOnly={!!formData.phone && formData.phone.startsWith('+91')}
               />
             </div>
+            {formData.phone && formData.phone.startsWith('+91') && (
+              <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '4px', paddingLeft: '4px' }}>
+                📱 Verified via OTP
+              </p>
+            )}
           </div>
 
           <div style={{ marginBottom: '20px' }}>
@@ -197,19 +242,38 @@ export default function ProfilePage() {
               </>
             ) : (
               <>
-                <Save size={20} /> Save Profile
+                <Save size={20} /> {isNewUser ? 'Save & Get Started' : 'Save Profile'}
               </>
             )}
           </button>
         </form>
         
-        <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
           <button 
             onClick={() => router.push('/report')}
             className="btn-ghost" 
             style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
           >
-            Continue to Report <ArrowRight size={18} />
+            {isNewUser ? 'Skip for Now' : 'Report an Issue'} <ArrowRight size={18} />
+          </button>
+          
+          <button
+            onClick={handleSignOut}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--text-muted)',
+              fontSize: '0.85rem',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px',
+              transition: 'color 0.2s',
+            }}
+          >
+            <LogOut size={16} />
+            Sign Out
           </button>
         </div>
       </motion.div>

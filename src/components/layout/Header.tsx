@@ -2,11 +2,33 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Shield, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { Shield, Menu, X, User, LogOut } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { auth } from '@/lib/firebase';
+import type { User as FirebaseUser } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState<FirebaseUser | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((u) => {
+      setUser(u);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      setMenuOpen(false);
+      router.push('/');
+    } catch (err) {
+      console.error('Sign out failed:', err);
+    }
+  };
 
   return (
     <header
@@ -85,11 +107,44 @@ export default function Header() {
           }}>
             Dashboard
           </Link>
-          <Link href="/login">
-            <button className="btn-primary" style={{ padding: '10px 24px', fontSize: '0.85rem' }}>
-              Sign In
-            </button>
-          </Link>
+          {user ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <Link href="/profile">
+                <button className="btn-ghost" style={{
+                  padding: '8px 16px',
+                  fontSize: '0.85rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                }}>
+                  <User size={16} />
+                  Profile
+                </button>
+              </Link>
+              <button
+                className="btn-ghost"
+                onClick={handleSignOut}
+                style={{
+                  padding: '8px 16px',
+                  fontSize: '0.85rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  color: 'var(--status-danger)',
+                  borderColor: 'var(--status-danger)',
+                }}
+              >
+                <LogOut size={16} />
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            <Link href="/login">
+              <button className="btn-primary" style={{ padding: '10px 24px', fontSize: '0.85rem' }}>
+                Sign In
+              </button>
+            </Link>
+          )}
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -149,11 +204,52 @@ export default function Header() {
           >
             Dashboard
           </Link>
-          <Link href="/login" onClick={() => setMenuOpen(false)}>
-            <button className="btn-primary" style={{ width: '100%', marginTop: '8px' }}>
-              Sign In
-            </button>
-          </Link>
+          {user ? (
+            <>
+              <Link
+                href="/profile"
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  color: 'var(--text-secondary)',
+                  textDecoration: 'none',
+                  padding: '12px 0',
+                  fontSize: '0.95rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}
+              >
+                <User size={18} />
+                My Profile
+              </Link>
+              <button
+                onClick={handleSignOut}
+                style={{
+                  background: 'none',
+                  border: '1px solid var(--status-danger)',
+                  color: 'var(--status-danger)',
+                  padding: '12px',
+                  borderRadius: 'var(--radius-md)',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  marginTop: '8px',
+                }}
+              >
+                <LogOut size={18} />
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <Link href="/login" onClick={() => setMenuOpen(false)}>
+              <button className="btn-primary" style={{ width: '100%', marginTop: '8px' }}>
+                Sign In
+              </button>
+            </Link>
+          )}
         </motion.div>
       )}
     </header>
