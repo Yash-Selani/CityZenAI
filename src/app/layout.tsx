@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import BottomNav from '@/components/layout/BottomNav';
+import AuthGuard from '@/components/auth/AuthGuard';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -39,11 +40,13 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body style={{ paddingTop: '64px', paddingBottom: '72px' }}>
         <div className="gradient-mesh" aria-hidden="true" />
-        <Header />
-        <main style={{ minHeight: 'calc(100vh - 136px)' }}>
-          {children}
-        </main>
-        <BottomNav />
+        <AuthGuard>
+          <Header />
+          <main style={{ minHeight: 'calc(100vh - 136px)' }}>
+            {children}
+          </main>
+          <BottomNav />
+        </AuthGuard>
       </body>
     </html>
   );
