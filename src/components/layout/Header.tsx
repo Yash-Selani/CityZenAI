@@ -11,11 +11,27 @@ import { useRouter } from 'next/navigation';
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState<FirebaseUser | null>(null);
+  const [userName, setUserName] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((u) => {
+    const unsubscribe = auth.onAuthStateChanged(async (u) => {
       setUser(u);
+      if (u) {
+        try {
+          const res = await fetch(`/api/user?userId=${u.uid}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.data?.name) {
+              setUserName(data.data.name);
+            }
+          }
+        } catch (e) {
+          console.error('Header profile fetch failed:', e);
+        }
+      } else {
+        setUserName(null);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -115,10 +131,16 @@ export default function Header() {
                   fontSize: '0.85rem',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '6px',
+                  gap: '8px',
                 }}>
-                  <User size={16} />
-                  Profile
+                  <div style={{
+                    width: '24px', height: '24px', borderRadius: '50%',
+                    background: 'var(--accent-gradient)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center'
+                  }}>
+                    <User size={14} color="white" />
+                  </div>
+                  <span style={{ fontWeight: 600 }}>{userName || 'Citizen'}</span>
                 </button>
               </Link>
               <button
