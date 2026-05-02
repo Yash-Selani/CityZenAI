@@ -1,8 +1,10 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { auth } from '@/lib/firebase';
 import {
   Camera,
   Brain,
@@ -192,12 +194,27 @@ function BenefitCard({
 
 // --- Main Landing Page ---
 export default function LandingPage() {
+  const router = useRouter();
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    return auth.onAuthStateChanged((user) => {
+      if (!user) {
+        router.push('/login');
+      } else {
+        setChecking(false);
+      }
+    });
+  }, [router]);
+
   const featuresRef = useRef(null);
   const statsRef = useRef(null);
   const benefitsRef = useRef(null);
   const featuresInView = useInView(featuresRef, { once: true, margin: '-80px' });
   const statsInView = useInView(statsRef, { once: true, margin: '-80px' });
   const benefitsInView = useInView(benefitsRef, { once: true, margin: '-80px' });
+
+  if (checking) return null;
 
   return (
     <div style={{ overflow: 'hidden' }}>
